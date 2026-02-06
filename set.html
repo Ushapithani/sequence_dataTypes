@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Set Operations</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    color:white;
+}
+.container{
+    width:420px;
+    margin:120px auto;
+    background:#111;
+    padding:30px;
+    text-align:center;
+}
+h1{margin-bottom:25px;}
+input{
+    width:90%;
+    padding:10px;
+    margin-bottom:15px;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+}
+button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+    cursor:pointer;
+}
+button:hover{background:#7c5cff;}
+pre{
+    background:black;
+    padding:15px;
+    margin-top:20px;
+    text-align:left;
+    color:#0f0;
+}
+a{color:#7c5cff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Set Operations</h1>
+
+<input id="data" placeholder="Enter elements (space separated)">
+<button onclick="create()">Create Set</button>
+
+<button onclick="display()">1. Display</button>
+<button onclick="length()">2. Length</button>
+<button onclick="add()">3. Add Element</button>
+<button onclick="remove()">4. Remove Element</button>
+<button onclick="has()">5. Membership</button>
+<button onclick="clearSet()">6. Clear</button>
+
+<pre id="out">Output...</pre>
+<a href="index2.html">← Back</a>
+</div>
+
+<script>
+let st = new Set();
+
+function create(){
+    st = new Set(data.value.split(" ").map(Number));
+    out("Set created: "+Array.from(st));
+}
+function display(){
+    out("Set: "+Array.from(st));
+}
+function length(){
+    out("Length: "+st.size);
+}
+function add(){
+    let x = Number(prompt("Enter element"));
+    st.add(x);
+    out("Updated Set: "+Array.from(st));
+}
+function remove(){
+    let x = Number(prompt("Enter element"));
+    st.delete(x);
+    out("Updated Set: "+Array.from(st));
+}
+function has(){
+    let x = Number(prompt("Enter element"));
+    out(st.has(x) ? x+" is present" : x+" is not present");
+}
+function clearSet(){
+    st.clear();
+    out("Set cleared");
+}
+function out(msg){
+    document.getElementById("out").innerText = msg;
+}
+</script>
+
+</body>
+</html>

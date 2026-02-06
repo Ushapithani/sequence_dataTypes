@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>List Operations</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    color:white;
+}
+.container{
+    width:420px;
+    margin:120px auto;
+    background:#111;
+    padding:30px;
+    text-align:center;
+}
+h1{
+    margin-bottom:25px;
+}
+input{
+    width:90%;
+    padding:10px;
+    margin-bottom:15px;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+}
+button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+    cursor:pointer;
+}
+button:hover{
+    background:#7c5cff;
+}
+pre{
+    background:black;
+    padding:15px;
+    margin-top:20px;
+    text-align:left;
+    color:#0f0;
+}
+a{
+    color:#7c5cff;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>List Operations</h1>
+
+<input id="data" placeholder="Enter elements (space separated)">
+<button onclick="create()">Create List</button>
+
+<button onclick="display()">1. Display</button>
+<button onclick="length()">2. Length</button>
+<button onclick="add()">3. Add Element</button>
+<button onclick="remove()">4. Remove Element</button>
+<button onclick="popItem()">5. Pop</button>
+<button onclick="sortList()">6. Sort</button>
+<button onclick="reverseList()">7. Reverse</button>
+<button onclick="clearList()">8. Clear</button>
+
+<pre id="out">Output...</pre>
+
+<a href="index2.html">← Back</a>
+</div>
+
+<script>
+let lst=[];
+
+function create(){
+    lst = data.value.split(" ").map(Number);
+    out("List created: "+lst);
+}
+function display(){ out("List: "+lst); }
+function length(){ out("Length: "+lst.length); }
+function add(){
+    let x=Number(prompt("Enter element"));
+    lst.push(x);
+    out("Updated List: "+lst);
+}
+function remove(){
+    let x=Number(prompt("Enter element"));
+    lst=lst.filter(e=>e!==x);
+    out("Updated List: "+lst);
+}
+function popItem(){
+    lst.pop();
+    out("Updated List: "+lst);
+}
+function sortList(){
+    lst.sort((a,b)=>a-b);
+    out("Sorted List: "+lst);
+}
+function reverseList(){
+    lst.reverse();
+    out("Reversed List: "+lst);
+}
+function clearList(){
+    lst=[];
+    out("List cleared");
+}
+function out(msg){
+    document.getElementById("out").innerText=msg;
+}
+</script>
+
+</body>
+</html>

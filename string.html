@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>String Operations</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    color:white;
+}
+.container{
+    width:420px;
+    margin:120px auto;
+    background:#111;
+    padding:30px;
+    text-align:center;
+}
+h1{margin-bottom:25px;}
+input{
+    width:90%;
+    padding:10px;
+    margin-bottom:15px;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+}
+button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    background:black;
+    border:1px solid #7c5cff;
+    color:white;
+    cursor:pointer;
+}
+button:hover{background:#7c5cff;}
+pre{
+    background:black;
+    padding:15px;
+    margin-top:20px;
+    text-align:left;
+    color:#0f0;
+}
+a{color:#7c5cff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>String Operations</h1>
+
+<input id="str" placeholder="Enter a string">
+<button onclick="create()">Create String</button>
+
+<button onclick="display()">1. Display</button>
+<button onclick="length()">2. Length</button>
+<button onclick="upper()">3. Uppercase</button>
+<button onclick="lower()">4. Lowercase</button>
+<button onclick="reverse()">5. Reverse</button>
+<button onclick="sliceStr()">6. Slice</button>
+<button onclick="replaceStr()">7. Replace</button>
+
+<pre id="out">Output...</pre>
+<a href="index2.html">← Back</a>
+</div>
+
+<script>
+let s="";
+
+function create(){
+    s=str.value;
+    out("String created: "+s);
+}
+function display(){ out("String: "+s); }
+function length(){ out("Length: "+s.length); }
+function upper(){ out("Uppercase: "+s.toUpperCase()); }
+function lower(){ out("Lowercase: "+s.toLowerCase()); }
+function reverse(){
+    out("Reversed: "+s.split("").reverse().join(""));
+}
+function sliceStr(){
+    let a=Number(prompt("Start index"));
+    let b=Number(prompt("End index"));
+    out("Slice: "+s.slice(a,b));
+}
+function replaceStr(){
+    let a=prompt("Old value");
+    let b=prompt("New value");
+    out("Result: "+s.replace(a,b));
+}
+function out(msg){
+    document.getElementById("out").innerText=msg;
+}
+</script>
+
+</body>
+</html>
