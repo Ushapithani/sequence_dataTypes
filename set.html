@@ -93,6 +93,13 @@ function has(){
     let x = Number(prompt("Enter element"));
     out(st.has(x) ? x+" is present" : x+" is not present");
 }
+function union(){
+    let other = prompt("Enter another set (space separated)");
+    let otherSet = new Set(other.split(" ").map(Number));
+    let unionSet = new Set([...st, ...otherSet]);
+    out("Union: "+Array.from(unionSet));
+}
+
 function clearSet(){
     st.clear();
     out("Set cleared");

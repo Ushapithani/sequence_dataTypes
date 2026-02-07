@@ -59,9 +59,10 @@ a{color:#7c5cff;text-decoration:none;}
 <button onclick="length()">2. Length</button>
 <button onclick="upper()">3. Uppercase</button>
 <button onclick="lower()">4. Lowercase</button>
-<button onclick="reverse()">5. Reverse</button>
-<button onclick="sliceStr()">6. Slice</button>
-<button onclick="replaceStr()">7. Replace</button>
+<button onclick="capitalize()">5. Capitalize</button>
+<button onclick="reverse()">6. Reverse</button>
+<button onclick="sliceStr()">7. Slice</button>
+<button onclick="replaceStr()">8. Replace</button>
 
 <pre id="out">Output...</pre>
 <a href="index2.html">← Back</a>
@@ -78,6 +79,7 @@ function display(){ out("String: "+s); }
 function length(){ out("Length: "+s.length); }
 function upper(){ out("Uppercase: "+s.toUpperCase()); }
 function lower(){ out("Lowercase: "+s.toLowerCase()); }
+function capitalize(){ out("Capitalized: "+s.charAt(0).toUpperCase()+s.slice(1)); }
 function reverse(){
     out("Reversed: "+s.split("").reverse().join(""));
 }

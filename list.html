@@ -8,15 +8,17 @@
 body{
     margin:0;
     background:black;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     color:white;
 }
 .container{
     width:420px;
-    margin:120px auto;
+    margin:100px auto;
     background:#111;
     padding:30px;
     text-align:center;
+    border-radius:10px;
+    box-shadow:0 0 25px rgba(124,92,255,0.25);
 }
 h1{
     margin-bottom:25px;
@@ -28,15 +30,17 @@ input{
     background:black;
     border:1px solid #7c5cff;
     color:white;
+    outline:none;
 }
 button{
     width:100%;
     padding:12px;
-    margin:8px 0;
+    margin:6px 0;
     background:black;
     border:1px solid #7c5cff;
     color:white;
     cursor:pointer;
+    transition:0.3s;
 }
 button:hover{
     background:#7c5cff;
@@ -46,9 +50,13 @@ pre{
     padding:15px;
     margin-top:20px;
     text-align:left;
-    color:#0f0;
+    color:#00ff66;
+    min-height:60px;
+    border-radius:6px;
 }
 a{
+    display:block;
+    margin-top:15px;
     color:#7c5cff;
     text-decoration:none;
 }
@@ -61,16 +69,22 @@ a{
 <h1>List Operations</h1>
 
 <input id="data" placeholder="Enter elements (space separated)">
-<button onclick="create()">Create List</button>
+<button onclick="createList()">Create List</button>
 
 <button onclick="display()">1. Display</button>
-<button onclick="length()">2. Length</button>
+<button onclick="lengthList()">2. Length</button>
 <button onclick="add()">3. Add Element</button>
-<button onclick="remove()">4. Remove Element</button>
+<button onclick="removeElement()">4. Remove Element</button>
 <button onclick="popItem()">5. Pop</button>
 <button onclick="sortList()">6. Sort</button>
 <button onclick="reverseList()">7. Reverse</button>
-<button onclick="clearList()">8. Clear</button>
+<button onclick="indexElement()">9. Index of Element</button>
+<button onclick="countElement()">10. Count of Element</button>
+<button onclick="sumList()">11. Sum</button>
+<button onclick="maxElement()">12. Max Element</button>
+<button onclick="minElement()">13. Min Element</button>
+<button onclick="average()">14. Average</button>
+<button onclick="clearList()">15. Clear List</button>
 
 <pre id="out">Output...</pre>
 
@@ -78,42 +92,113 @@ a{
 </div>
 
 <script>
-let lst=[];
+let lst = [];
 
-function create(){
-    lst = data.value.split(" ").map(Number);
-    out("List created: "+lst);
+/* ✅ Create list (NO extra 0 bug) */
+function createList(){
+    const input = document.getElementById("data").value.trim();
+
+    if(input === ""){
+        output("Please enter elements");
+        return;
+    }
+
+    lst = input
+        .split(/\s+/)            // handles multiple spaces
+        .map(Number)
+        .filter(n => !isNaN(n)); // removes invalid numbers
+
+    output("List created: " + lst);
 }
-function display(){ out("List: "+lst); }
-function length(){ out("Length: "+lst.length); }
+
+function display(){
+    output("List: " + lst);
+}
+
+function lengthList(){
+    output("Length: " + lst.length);
+}
+
 function add(){
-    let x=Number(prompt("Enter element"));
+    let x = Number(prompt("Enter element to add"));
+    if(isNaN(x)) return;
     lst.push(x);
-    out("Updated List: "+lst);
+    output("Updated List: " + lst);
 }
-function remove(){
-    let x=Number(prompt("Enter element"));
-    lst=lst.filter(e=>e!==x);
-    out("Updated List: "+lst);
+
+function removeElement(){
+    let x = Number(prompt("Enter element to remove"));
+    lst = lst.filter(e => e !== x);
+    output("Updated List: " + lst);
 }
+
 function popItem(){
+    if(lst.length === 0){
+        output("List is empty");
+        return;
+    }
     lst.pop();
-    out("Updated List: "+lst);
+    output("Updated List: " + lst);
 }
+
 function sortList(){
     lst.sort((a,b)=>a-b);
-    out("Sorted List: "+lst);
+    output("Sorted List: " + lst);
 }
+
 function reverseList(){
     lst.reverse();
-    out("Reversed List: "+lst);
+    output("Reversed List: " + lst);
 }
+
+function indexElement(){
+    let x = Number(prompt("Enter element"));
+    output("Index of " + x + ": " + lst.indexOf(x));
+}
+
+function countElement(){
+    let x = Number(prompt("Enter element"));
+    let count = lst.filter(e => e === x).length;
+    output("Count of " + x + ": " + count);
+}
+
+function sumList(){
+    let sum = lst.reduce((a,b)=>a+b,0);
+    output("Sum: " + sum);
+}
+
+function maxElement(){
+    if(lst.length === 0){
+        output("List is empty");
+        return;
+    }
+    output("Max Element: " + Math.max(...lst));
+}
+
+function minElement(){
+    if(lst.length === 0){
+        output("List is empty");
+        return;
+    }
+    output("Min Element: " + Math.min(...lst));
+}
+
+function average(){
+    if(lst.length === 0){
+        output("List is empty");
+        return;
+    }
+    let avg = lst.reduce((a,b)=>a+b,0) / lst.length;
+    output("Average: " + avg);
+}
+
 function clearList(){
-    lst=[];
-    out("List cleared");
+    lst = [];
+    output("List cleared");
 }
-function out(msg){
-    document.getElementById("out").innerText=msg;
+
+function output(msg){
+    document.getElementById("out").innerText = msg;
 }
 </script>
 
